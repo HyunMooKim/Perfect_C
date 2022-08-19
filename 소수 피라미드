@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>
+int main(void) // 소수 피라미드 쌓기
+{
+    int i, j, count, k, n;
+    count = 0;
+    int rest = 1; // rest는 처음부터 257까지 하나씩 소수 검사하다가 행이 바뀌면 어디까지 검사했는지 저장하기 위함
+    for (i = 1; i <= 10; i++)
+    {           //  i 즉 가장 밖에 있는 for 문이 i 번째 행을 뜻함
+        for (j = 1; j <= 40 - 2 * i; j++) // 피라미드를 위한 앞쪽 공백   2 * i 를 빼는 이유는 행이 내려갈수록 숫자 자리수가 커져서 덜 띄어야하기 때문.
+        {
+            printf(" ");
+        }
+
+        for (n = rest + 1; n <= 257; n++)  // n = 2 부터 시작하면 각행마다 다시 2부터 출력하는 대참사
+        {                                  // 또한 n = rest 로 시작하면 한 행의 끝 숫자를 다음행 첫번째에 반복
+            for (k = 2; k <= n - 1; k++)  // 소수 아닌것은 break로 솎아내는 작업
+            {
+                if (n % k == 0)
+                    break;
+            }
+            // 무엇으로도 나누어지지 않았다면 k는 n이 된다.
+            // 소수인 것은 출력하며, 두자리는 간격을 넓게, 세 자리는 간격을 좁게 출력
+            if (k == n && n <= 99)
+            {
+                printf("%d  ", n);
+                count++;
+                if (count == i)    // n번째 행에 n 개가 쌓이면 exit 로  
+                {
+                    break;
+                }
+            }
+            if (k == n && n >= 100)
+            {
+                printf("%d ", n);
+                count++;
+                if (count == i)    // n번째 행에 n 개가 쌓이면 exit 로  
+                {
+                    break;
+                }
+            }
+
+        }
+
+        printf("\n"); // 행이 끝나는 곳이니 한 줄 띄고, 
+        rest = n;    //  소수 검사 n은 어디까지 했는지 rest에 저장해주고,
+        count = 0;   // 각 행안의 숫자 개수는 다음 행을 위해 0으로 초기화
+    }
+
+    return 0;
+}
