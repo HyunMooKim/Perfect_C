@@ -1,10 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-//2001 ÀÌÈÄÀÇ randomÇÑ ³âµµÀÇ ´Ş·ÂÀ» Ãâ·ÂÇÏ´Â ÇÁ·Î±×·¥
-//2001.01.01Àº ¿ù¿äÀÏ ÀÌ¸¦ ±âÁØÀ¸·Î °è»êÇÑ´Ù. 
-//ÄÜ¼ÖÃ¢¿¡´Â ±ú²ıÇÏ°Ô ³ª¿À´Âµ¥, ¸Ş¸ğÀåÀº ¾à°£ »ß¶Ô»©¶Ô
-char *days[7] = { "ÀÏ","¿ù","È­","¼ö","¸ñ","±İ","Åä" };
+//2001 ì´í›„ì˜ randomí•œ ë…„ë„ì˜ ë‹¬ë ¥ì„ ìƒˆë¡œìš´ ë©”ëª¨ì¥ íŒŒì¼ê³¼ ì½˜ì†” ì°½ìœ¼ë¡œ ë™ì‹œì— ì¶œë ¥í•˜ëŠ” í”„ë¡œê·¸ë¨
+//2001.01.01ì€ ì›”ìš”ì¼ ì´ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ê³„ì‚°í•œë‹¤. 
+//ì½˜ì†”ì°½ì—ëŠ” ê¹¨ë—í•˜ê²Œ ë‚˜ì˜¤ëŠ”ë°, ë©”ëª¨ì¥ì€ ì•½ê°„ ì‚ëš¤ë¹¼ëš¤
+char *days[7] = { "ì¼","ì›”","í™”","ìˆ˜","ëª©","ê¸ˆ","í† " };
 
 void fprintf_calendar(FILE* f, int year);
 int get_total_dates(int year);
@@ -17,14 +17,14 @@ int main()
 	char name[30]; 
 	int year;
 
-	printf("³âµµ¸¦ ÀÔ·ÂÇÏ¼¼¿ä: ex) 2022\n");
+	printf("ë…„ë„ë¥¼ ì…ë ¥í•˜ì„¸ìš”: ex) 2022\n");
 	scanf("%d", &year);
 
-	printf("ÆÄÀÏ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä: ex) 2022.txt\n");
+	printf("íŒŒì¼ ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”: ex) 2022.txt\n");
 	scanf("%s", name);
 
 	if (fopen_s(&f, name, "w") != 0) {
-		printf("ÆÄÀÏÀÌ ¿­¸®Áö ¾Ê½À´Ï´Ù.");
+		printf("íŒŒì¼ì´ ì—´ë¦¬ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		return -1;
 	}
 	
@@ -33,7 +33,7 @@ int main()
 	return 0;
 }
 
-//ÆÄÀÏ°ú ÄÜ¼Ö¿¡ ´Ş·Â Ãâ·Â
+//íŒŒì¼ê³¼ ì½˜ì†”ì— ë‹¬ë ¥ ì¶œë ¥
 void fprintf_calendar(FILE* f, int year) {
 	int total;
 	int startday;
@@ -43,9 +43,9 @@ void fprintf_calendar(FILE* f, int year) {
 	int totalcnt = 0;
 	int max_month;
 	total = get_total_dates(year);
-	startday = (total +1 ) % 7; //½ÃÀÛ¿äÀÏ 2001.01.01 ÀÌ ¿ù(1) ÀÌ´Ï±î 1 ´õÇØÁØ´Ù.
+	startday = (total +1 ) % 7; //ì‹œì‘ìš”ì¼ 2001.01.01 ì´ ì›”(1) ì´ë‹ˆê¹Œ 1 ë”í•´ì¤€ë‹¤.
 	
-	//À±³â¿¡ µû¶ó ¸ñÇ¥ ¼³Á¤
+	//ìœ¤ë…„ì— ë”°ë¼ ëª©í‘œ ì„¤ì •
 	leap = isLeap(year);
 	if (leap == 1)
 		goal_date = 366;
@@ -54,22 +54,22 @@ void fprintf_calendar(FILE* f, int year) {
 
 	while (totalcnt != goal_date) {
 		for (int month = 1; month <= 12; month++) {
-			printf("         [%d³â %d¿ù]\n", year, month);
+			printf("         [%dë…„ %dì›”]\n", year, month);
 			printf("----------------------------\n");
-			printf("  ÀÏ  ¿ù  È­  ¼ö  ¸ñ  ±İ  Åä\n");
+			printf("  ì¼  ì›”  í™”  ìˆ˜  ëª©  ê¸ˆ  í† \n");
 			
-			fprintf(f,"         [%d³â %d¿ù]\n", year, month);
+			fprintf(f,"         [%dë…„ %dì›”]\n", year, month);
 			fprintf(f,"----------------------------\n");
-			fprintf(f,"  ÀÏ  ¿ù  È­  ¼ö  ¸ñ  ±İ  Åä\n");
+			fprintf(f,"  ì¼  ì›”  í™”  ìˆ˜  ëª©  ê¸ˆ  í† \n");
 
-			//½ÃÀÛ¿äÀÏ±îÁö °ø¹é
+			//ì‹œì‘ìš”ì¼ê¹Œì§€ ê³µë°±
 			for (int i = 0; i < startday; i++) {
 				printf("    ");
 				fprintf(f,"     ");
 			}
 				
 
-			//°¢ ´ŞÀÇ ÃÖ´ëÀÏ±îÁö Ãâ·ÂÇÏ¸ç ÃÑ 365 or 366¿¡ µµ´ŞÇÏ¸é ¸ØÃá´Ù.
+			//ê° ë‹¬ì˜ ìµœëŒ€ì¼ê¹Œì§€ ì¶œë ¥í•˜ë©° ì´ 365 or 366ì— ë„ë‹¬í•˜ë©´ ë©ˆì¶˜ë‹¤.
 			max_month = get_max_day(leap, month);
 			while (monthcnt != max_month){
 				monthcnt++;
@@ -77,15 +77,15 @@ void fprintf_calendar(FILE* f, int year) {
 				
 				printf("%4d", monthcnt);
 				fprintf(f, "%5d", monthcnt);
-				if (  (monthcnt + startday ) % 7 == 0) { //Åä¿äÀÏ¸¶´Ù ¶ç¿î´Ù.
+				if (  (monthcnt + startday ) % 7 == 0) { //í† ìš”ì¼ë§ˆë‹¤ ë„ìš´ë‹¤.
 					printf("\n");
 					fprintf(f,"\n");
 				}
 				if (totalcnt == goal_date) {
-					break; //12¿ù¿¡ Ã¤¿öÁö´Ï±î ¾Ë¾Æ¼­ for¹®±îÁöµµ ³ª°¨
+					break; //12ì›”ì— ì±„ì›Œì§€ë‹ˆê¹Œ ì•Œì•„ì„œ forë¬¸ê¹Œì§€ë„ ë‚˜ê°
 				}
 			}
-			startday = (startday + (monthcnt % 7) ) % 7; //¾ÈÇØÁÖ¸é ¸Å´Ş °°Àº ³¯ ½ÃÀÛ 
+			startday = (startday + (monthcnt % 7) ) % 7; //ì•ˆí•´ì£¼ë©´ ë§¤ë‹¬ ê°™ì€ ë‚  ì‹œì‘ 
 			monthcnt = 0;
 			printf("\n\n");
 			fprintf(f, "\n\n");
@@ -94,7 +94,7 @@ void fprintf_calendar(FILE* f, int year) {
 	
 
 }
-//2001.01.01 ºÎÅÍ ÇØ´ç ³âµµ Àü±îÁöÀÇ ÃÑ ÀÏ¼ö °è»ê
+//2001.01.01 ë¶€í„° í•´ë‹¹ ë…„ë„ ì „ê¹Œì§€ì˜ ì´ ì¼ìˆ˜ ê³„ì‚°
 int get_total_dates(int year) {
 	int Leap;
 	int total = 0;
@@ -109,7 +109,7 @@ int get_total_dates(int year) {
 
 	return total;
 }
-//year³â month ´ŞÀÇ ³¡³¯À» °è»ê 
+//yearë…„ month ë‹¬ì˜ ëë‚ ì„ ê³„ì‚° 
 int get_max_day(int leap, int month) {
 	if (leap == 1) {
 		if (month == 2) {
@@ -131,7 +131,7 @@ int get_max_day(int leap, int month) {
 	}
 }
 
-//À±³â °Ë»ç - ¸ÂÀ¸¸é 1 ¹İÈ¯
+//ìœ¤ë…„ ê²€ì‚¬ - ë§ìœ¼ë©´ 1 ë°˜í™˜
 int isLeap(int year) {
 	if ((year % 4 == 0) && (year % 100 != 0) || (year % 400 == 0))
 		return 1;
