@@ -49,25 +49,15 @@ void printprime(int n)
 
 void ispalindrome(int input)
 {
-	int num = 1; //1부터 올라가면서 자리수가 홀수갠지 짝수갠지 확인하자
-	int countsoo = 1; // 자리수
+	int num = input; 
+	int countsoo = 0; // 자리수
 	int save[300] = { 0 }; // 각 자리수를 저장할 배열
 	int count = 0; //소수판단처럼 
-
 	// 자리수 몇개인지 먼저 확인해 보자
-	do
-	{
-		if (input / (int)pow(10, num) > 0)//십의자리부터 올라가며 있는지 확인 pow(int a, int b) 가 double이라 첨에 오류남
-		{
-			countsoo++;
-		}
-		else
-			break; // 자리수가 더이상 없으면 stop
-
-		num++;
-
-	} while (1);
-
+	while (num) {
+		countsoo++;
+		num = num / 10;
+	}
 
 	printf("자리수는 %d \n\n", countsoo);
 
