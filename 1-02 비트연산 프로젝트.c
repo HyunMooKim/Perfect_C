@@ -9,17 +9,17 @@ int main(void)
 
     do
     {
-        printf("[1] ºñÆ® and\n\n [2]ºñÆ® or\n\n [3] ºñÆ® xor\n\n [4] ºñÆ® complement(~) \n\n [0] Á¾·á\n\n À§ ¿¬»êÁß ÇÏ³ª¸¦ ¼±ÅÃÇÏ¼¼¿ä >>");
+        printf("[1] ë¹„íŠ¸ and\n\n [2]ë¹„íŠ¸ or\n\n [3] ë¹„íŠ¸ xor\n\n [4] ë¹„íŠ¸ complement(~) \n\n [0] ì¢…ë£Œ\n\n ìœ„ ì—°ì‚°ì¤‘ í•˜ë‚˜ë¥¼ ì„ íƒí•˜ì„¸ìš” >>");
         scanf_s("%d", &cal);
 
         if (cal == 4)
         {
-            printf("¿¬»êÇÒ Á¤¼ö x ÇÏ³ª ÀÔ·Â >>");
+            printf("ì—°ì‚°í•  ì •ìˆ˜ x í•˜ë‚˜ ì…ë ¥ >>");
             scanf_s("%d", &x);
             printf("x= ");
             for (d = 31; d >= 0; d--)
             {
-                printf("%d", (x >> d & 1)); // xÀÇ ºñÆ®°ª Ãâ·Â
+                printf("%d", (x >> d & 1)); // xì˜ ë¹„íŠ¸ê°’ ì¶œë ¥
             }
             printf("   %d\n", x);
             
@@ -32,25 +32,25 @@ int main(void)
             printf("   %d\n", z);
         }
         else if (cal == 0) {
-            printf("Á¾·á");
+            printf("ì¢…ë£Œ");
             return 0;
         }
         else
         {
-            printf("¿¬»êÇÒ µÎ Á¤¼ö x y ÀÔ·Â >>");
+            printf("ì—°ì‚°í•  ë‘ ì •ìˆ˜ x y ì…ë ¥ >>");
             scanf_s("%d %d", &x, &y);
 
             printf("x = ");
-            for (a = 31; a >= 0; a--) // xÀÇ ºñÆ®°ª Ãâ·Â
+            for (a = 31; a >= 0; a--) // xì˜ ë¹„íŠ¸ê°’ ì¶œë ¥
             {
                 printf("%d", (x >> a & 1));
             }
-            printf("   %d\n", x); //½ÊÁø¼ö °ªµµ º¸¿©ÁÖ±â
+            printf("   %d\n", x); //ì‹­ì§„ìˆ˜ ê°’ë„ ë³´ì—¬ì£¼ê¸°
 
             printf("y = ");
             for (b = 31; b >= 0; b--)
             {
-                printf("%d", (y >> b & 1)); // yÀÇ ºñÆ®°ª Ãâ·Â
+                printf("%d", (y >> b & 1)); // yì˜ ë¹„íŠ¸ê°’ ì¶œë ¥
             }
 
             printf("   %d\n", y);
@@ -62,7 +62,7 @@ int main(void)
                 printf("x & y = ");
                 for (c = 31; c >= 0; c--)
                 {
-                    printf("%d", (z >> c & 1)); // z = x&yÀÇ ºñÆ®°ª Ãâ·Â
+                    printf("%d", (z >> c & 1)); // z = x&yì˜ ë¹„íŠ¸ê°’ ì¶œë ¥
                 }
                 printf("   %d\n", z);
                 break;
@@ -72,7 +72,7 @@ int main(void)
                 printf("x | y = ");
                 for (c = 31; c >= 1; c--)
                 {
-                    printf("%d", (z >> c & 1)); // z = x&yÀÇ ºñÆ®°ª Ãâ·Â
+                    printf("%d", (z >> c & 1)); // z = x&yì˜ ë¹„íŠ¸ê°’ ì¶œë ¥
                 }
                 printf("   %d\n", z);
                 break;
@@ -82,13 +82,13 @@ int main(void)
                 printf("x ^ y = ");
                 for (c = 31; c >= 0; c--)
                 {
-                    printf("%d", (z >> c & 1)); // z = x&yÀÇ ºñÆ®°ª Ãâ·Â
+                    printf("%d", (z >> c & 1)); // z = x&yì˜ ë¹„íŠ¸ê°’ ì¶œë ¥
                 }
                 printf("   %d\n", z);
                 break;
 
             default:
-                printf("Á¦´ë·Î ÀÔ·ÂÇØ");
+                printf("ì œëŒ€ë¡œ ì…ë ¥í•´");
             }
         }
 
