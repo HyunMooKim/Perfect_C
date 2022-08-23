@@ -1,8 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 
-//students.txt ÆÄÀÏ¿¡ ÇĞ»ıµéÀÇ Á¤º¸¸¦ Ãß°¡ÇÏ°í, °Ë»öÇÏ°í Ãâ·ÂÇÏ´Â ÇÁ·Î±×·¥
-//´Ü ½ÇÇàÇÒ¶§¸¶´Ù 1È¸¼º. 
+//students.txt íŒŒì¼ì— í•™ìƒë“¤ì˜ ì •ë³´ë¥¼ ì¶”ê°€í•˜ê³ , ê²€ìƒ‰í•˜ê³  ì¶œë ¥í•˜ëŠ” í”„ë¡œê·¸ë¨
+//ë‹¨ students.txt íŒŒì¼ì„ ë¯¸ë¦¬ ê°™ì€ í´ë” ì•ˆì— ë§Œë“¤ì–´ ë‘ì–´ì•¼ í•˜ë©°, ì‹¤í–‰í• ë•Œë§ˆë‹¤ 1íšŒì„±. 
 void print_menu();
 void printscore(FILE* f);
 void search(FILE* f, int cnt);
@@ -17,36 +17,36 @@ int main() {
 		print_menu();
 		scanf("%d", &choice);
 		getchar();
-		//Ãß°¡ : append ¸ğµå
+		//ì¶”ê°€ : append ëª¨ë“œ
 		if (choice == 1) {
 			if (fopen_s(&f, "students.txt", "a") != 0) {
-				printf("ÆÄÀÏÀÌ ¿­¸®Áö ¾Ê½À´Ï´Ù.");
+				printf("íŒŒì¼ì´ ì—´ë¦¬ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 				return -1;
 			}
 			cnt = append(f, cnt);
 		}
-		//¸ñ·Ï Ãâ·Â : read ¸ğµå
+		//ëª©ë¡ ì¶œë ¥ : read ëª¨ë“œ
 		else if (choice == 2) {
 			if (fopen_s(&f, "students.txt", "r") != 0) {
-				printf("ÆÄÀÏÀÌ ¿­¸®Áö ¾Ê½À´Ï´Ù.");
+				printf("íŒŒì¼ì´ ì—´ë¦¬ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 				return -1;
 			}
 			printscore(f);
 		}
-		//¹øÈ£·Î °Ë»ö 
+		//ë²ˆí˜¸ë¡œ ê²€ìƒ‰ 
 		else if (choice == 3) {
 			if (fopen_s(&f, "students.txt", "r") != 0) {
-				printf("ÆÄÀÏÀÌ ¿­¸®Áö ¾Ê½À´Ï´Ù.");
+				printf("íŒŒì¼ì´ ì—´ë¦¬ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 				return -1;
 			}
 			search(f, cnt);
 		}
-		//Á¾·á 
+		//ì¢…ë£Œ 
 		else if (choice == 4) {
 			return 0;
 		}
 		else {
-			printf("Àß¸øµÈ ÀÔ·Â\n");
+			printf("ì˜ëª»ëœ ì…ë ¥\n");
 		}
 
 	} while (choice != 4);
@@ -55,12 +55,12 @@ int main() {
 }
 
 int append(FILE* f, int cnt) {
-    // ctrl + z  °¡ ÀÔ·ÂµÉ¶§±îÁö °è¼Ó Ãß°¡
+    // ctrl + z  ê°€ ì…ë ¥ë ë•Œê¹Œì§€ ê³„ì† ì¶”ê°€
 	char line[50];
 	int mid;
 	int final;
 	int quiz;
-	printf("Ãß°¡ÇÒ ÇĞ»ıÀÇ ÀÌ¸§ Áß°£ ±â¸» ÄûÁî ¸¦ ÀÔ·ÂÇÏ¼¼¿ä\n");
+	printf("ì¶”ê°€í•  í•™ìƒì˜ ì´ë¦„ ì¤‘ê°„ ê¸°ë§ í€´ì¦ˆ ë¥¼ ì…ë ¥í•˜ì„¸ìš”\n");
 	fgets(line, sizeof(line), stdin);
 	while ( !feof(stdin) ) {
 		fprintf(f, "%d ", ++cnt);
@@ -75,11 +75,11 @@ void search(FILE* f, int cnt) {
 	int who;
 	int count = 1;
 	char line[50];
-	printf("ÇöÀç±îÁö %d ¹ø ÇĞ»ıÀÇ Á¤º¸°¡ ´ã°ÜÀÖ½À´Ï´Ù.\n", cnt);
-	printf("Ã£À» ÇĞ»ı ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä >>");
+	printf("í˜„ì¬ê¹Œì§€ %d ë²ˆ í•™ìƒì˜ ì •ë³´ê°€ ë‹´ê²¨ìˆìŠµë‹ˆë‹¤.\n", cnt);
+	printf("ì°¾ì„ í•™ìƒ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” >>");
 	scanf("%d", &who);
 
-	//¿øÇÏ´Â ¹øÈ£ÀÇ ÇĞ»ıÀ» Ã£´Â ÀÛ¾÷
+	//ì›í•˜ëŠ” ë²ˆí˜¸ì˜ í•™ìƒì„ ì°¾ëŠ” ì‘ì—…
 	while (count != who) {
 		fgets(line, sizeof(line), f);
 		count++;
@@ -94,7 +94,7 @@ void printscore(FILE* f) {
 	char line[50];
 	int readcnt = fread(line, sizeof(line), 1, f);
 	if (readcnt == 0) {
-		printf("ÇöÀç ¼ºÀû Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+		printf("í˜„ì¬ ì„±ì  ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		return;
 	}
 	while (!feof(f)) {
@@ -106,9 +106,9 @@ void printscore(FILE* f) {
 }
 
 void print_menu() {
-	printf("\n\n[1] ÇĞ»ı Ãß°¡\n");
-	printf("[2] ÇĞ»ı ¸ñ·Ï Ãâ·Â\n");
-	printf("[3] ÇĞ»ı °Ë»ö\n");
-	printf("[4] Á¾·á\n");
+	printf("\n\n[1] í•™ìƒ ì¶”ê°€\n");
+	printf("[2] í•™ìƒ ëª©ë¡ ì¶œë ¥\n");
+	printf("[3] í•™ìƒ ê²€ìƒ‰\n");
+	printf("[4] ì¢…ë£Œ\n");
 	return;
 }
