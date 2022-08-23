@@ -1,25 +1,25 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <math.h>
-//1~600±îÁö ¼Ò¼ö¸¦ ÆÇ´ÜÇÏ´Â ÇÁ·Î±×·¥.
-//¹®Á¦ Á¶°Ç¿¡ ³ª¿À´Â ¿¡¶óÅä½ºÅ×³×½ºÀÇ Ã¼ ¾Ë°í¸®Áò ¼³¸í¿¡ µû¶ó¼­ ¸¸µé¾ú´Ù.
+//1~600ê¹Œì§€ ì†Œìˆ˜ë¥¼ íŒë‹¨í•˜ëŠ” í”„ë¡œê·¸ëž¨.
+//ë¬¸ì œ ì¡°ê±´ì— ë‚˜ì˜¤ëŠ” ì—ë¼í† ìŠ¤í…Œë„¤ìŠ¤ì˜ ì²´ ì•Œê³ ë¦¬ì¦˜ ì„¤ëª…ì— ë”°ë¼ì„œ ë§Œë“¤ì—ˆë‹¤.
 
 int prime[601] = { 0 }; 
 
 int main() {
 	int cnt = 0; 
-	//step 1 : 2~600±îÁö ¸ðµÎ ¿ì¼± 1 Ã¼Å©
+	//step 1 : 2~600ê¹Œì§€ ëª¨ë‘ ìš°ì„  1 ì²´í¬
 	for (int i = 2; i <= 600; i++) {
 		prime[i] = 1;
 	}
-	//step 2 : sqrt(600) ÀÇ ¹è¼ö±îÁö nÀÌ ÇÏ³ª¾¿ Áõ°¡ÇÏ¸ç, nÀÇ 2¹è¼ö ÀÌ»ó¿¡ ÇØ´çÇÏ´Â ¼ýÀÚ´Â 0À¸·Î Ã¼Å©
+	//step 2 : sqrt(600) ì˜ ë°°ìˆ˜ê¹Œì§€ nì´ í•˜ë‚˜ì”© ì¦ê°€í•˜ë©°, nì˜ 2ë°°ìˆ˜ ì´ìƒì— í•´ë‹¹í•˜ëŠ” ìˆ«ìžëŠ” 0ìœ¼ë¡œ ì²´í¬
 	for (int n = 2; n <= sqrt(600); n++) {
 		for (int i = 2 ; n * i <= 600; i++) {
 			prime[n * i] = 0;
 		}
 	}
 
-	//Ãâ·Â 
+	//ì¶œë ¥ 
 	for (int i = 1; i <= 600; i++) {
 		if (prime[i] == 1) {
 			printf("%4d", i);
